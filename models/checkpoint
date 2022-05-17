@@ -1,0 +1,3 @@
+model_checkpoint_path: "/data2/elliotmunro/miniconda3/envs/hac/HAC/models/HAC.ckpt-99"
+all_model_checkpoint_paths: "/data2/elliotmunro/miniconda3/envs/hac/HAC/models/HAC.ckpt-49"
+all_model_checkpoint_paths: "/data2/elliotmunro/miniconda3/envs/hac/HAC/models/HAC.ckpt-99"

@@ -49,9 +49,13 @@ def design_agent_and_env(FLAGS):
             
     """
 
-    # Provide file name of Mujoco model(i.e., "pendulum.xml").  Make sure file is stored in "mujoco_files" folder
-    model_name = "ur5.xml"
-
+    # Provide file name of Mujoco model(i.e., "pendulum.xml").  Make sure file is stored in "mujoco_files" folder     
+    model_name = str(FLAGS.model_name)
+    if model_name[-4:]==".xml":
+        print("Loading .xml model: "+model_name+"...")
+    else:
+        print("Loading AntEnv model: "+model_name+"...")
+        
 
     # Provide initial state space consisting of the ranges for all joint angles and velocities.  In the UR5 Reacher task, we use a random initial shoulder position and use fixed values for the remainder.  Initial joint velocities are set to 0.
 

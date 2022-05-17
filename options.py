@@ -54,6 +54,11 @@ def parse_options():
         action='store_true',
         help='Print summary of each transition'
     )
+    parser.add_argument(
+        '--model_name',
+        default="ur5.xml",
+        help='the .xml file name or AntEnv name'
+    )
 
     FLAGS, unparsed = parser.parse_known_args()
 

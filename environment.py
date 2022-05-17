@@ -4,14 +4,18 @@ import time
 import numpy as np
 from mujoco_py import load_model_from_path, MjSim, MjViewer
 
+from environments.create_maze_env_cleanrl import create_maze_env
+
 class Environment():
 
     def __init__(self, model_name, goal_space_train, goal_space_test, project_state_to_end_goal, end_goal_thresholds, initial_state_space, subgoal_bounds, project_state_to_subgoal, subgoal_thresholds, max_actions = 1200, num_frames_skip = 10, show = False):
 
         self.name = model_name
-
-        # Create Mujoco Simulation
-        self.model = load_model_from_path("./mujoco_files/" + model_name)
+        if model_name[-4:]==".xml":
+            # Create Mujoco Simulation
+            self.model = load_model_from_path("./mujoco_files/" + model_name)
+        else:
+            self.model = create_maze_env(model_name).wrapped_env.model
         self.sim = MjSim(self.model)
 
         # Set dimensions and ranges of states, actions, and goals in order to configure actor/critic networks
@@ -142,7 +146,9 @@ class Environment():
 
             for i in range(3):
                 self.sim.data.mocap_pos[i] = joint_pos[i]
-            
+        elif self.name == "AntMaze":
+            print("need to write this display end goal function")        
+    
         else:
             assert False, "Provide display end goal function in environment.py file"
 

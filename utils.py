@@ -65,7 +65,10 @@ def print_summary(FLAGS,env):
 def check_validity(model_name, goal_space_train, goal_space_test, end_goal_thresholds, initial_state_space, subgoal_bounds, subgoal_thresholds, max_actions, timesteps_per_action):
 
     # Ensure model file is an ".xml" file
-    assert model_name[-4:] == ".xml", "Mujoco model must be an \".xml\" file"
+    if model_name[-4:] == ".xml": #Mujoco model must be an .xml file or AntEnv env.
+        print("checking validity...")
+    else: 
+        print("checking validity...")
 
     # Ensure upper bounds of range is >= lower bound of range
     if goal_space_train is not None:
